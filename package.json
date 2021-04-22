@@ -1,19 +1,12 @@
 {
-  "name": "gaurd",
+  "name": "OneBot",
   "version": "1.0.0",
   "description": "",
   "main": "Bot.js",
   "scripts": {
-    "test": "echo \"You don't have the n-word pass\"",
-    "start": "pm2 start Akai.js && clear && pm2 logs && --watch && echo \"Booted up bot successfully\"",
-    "stop": "pm2 stop Akai.js && clear && echo \"Stopped the bot successfully\""
+    "start": "pm2 start Bot.js "
   },
-  "keywords": [
-    "node",
-    "bot",
-    "discord"
-  ],
-  "author": "Samurai",
+  "author": "Scricker",
   "license": "MIT",
   "dependencies": {
     "canvas": "2.6.1",
@@ -27,6 +20,7 @@
     "node-fetch": "^2.6.0",
     "path": "0.12.7",
     "querystring": "^0.2.0",
+    "setimmediate": "^1.0.5",
     "util": "^0.12.1"
   }
 }

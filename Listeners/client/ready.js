@@ -1,20 +1,22 @@
 const { Listener } = require('discord-akairo')
 
 class ReadyListener extends Listener {
-  constructor () {
+  constructor() {
     super('ready', {
       emitter: 'client',
       event: 'ready'
     })
   }
 
-  async exec () {
+  async exec() {
     const statuses = [
-                `s!help | ${this.client.users.cache.size} users`
+      `!help | ${this.client.users.cache.size} users`
     ]; let i = 0
 
     this.client.user.setStatus('dnd')
-    this.client.user.setActivity(statuses[i++ % statuses.length], { type: 'PLAYING' })
+    setInterval(() => {
+      this.client.user.setActivity(statuses[i++ % statuses.length], { type: 'PLAYING' })
+    }, 15 * 1000)
 
     console.log(`${this.client.user.tag} est en ligne`)
   }

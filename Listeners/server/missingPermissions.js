@@ -2,25 +2,25 @@ const { Listener } = require('discord-akairo')
 const { MessageEmbed } = require('discord.js')
 
 class MissingPermissionsListener extends Listener {
-  constructor () {
+  constructor() {
     super('missingPermissions', {
       emitter: 'commandHandler',
       event: 'missingPermissions'
     })
   }
 
-  exec (message, command, type, missing) {
+  exec(message, command, type, missing) {
     if (type === 'client') {
       const result = missingPermissions(message.guild.me, missing)
       const embed = new MessageEmbed()
         .setColor(this.client.colors.red)
-        .setDescription(`${this.client.emojis.get('660343595626397699')} Je n'ai pas les permissions suivantes: \`${result}\` pour la commandes: \`${command}\`.`)
+        .setDescription(`${this.client.emojis.cache.get('829033555044466708')} Je n'ai pas les permissions suivantes: \`${result}\` pour la commandes: \`${command}\`.`)
       return message.channel.send({ embed })
     } else if (type === 'user') {
       const result = missingPermissions(message.member, missing)
       const embed = new MessageEmbed()
         .setColor(this.client.colors.red)
-        .setDescription(`${this.client.emojis.get('660343595626397699')} Vous n'avez pas les permissions suivantes: \`${result}\` pour la commandes: \`${command}\`.`)
+        .setDescription(`${this.client.emojis.cache.get('829033555044466708')} Vous n'avez pas les permissions suivantes: \`${result}\` pour la commandes: \`${command}\`.`)
       return message.channel.send({ embed })
     }
   }

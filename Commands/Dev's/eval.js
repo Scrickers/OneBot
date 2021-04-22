@@ -1,8 +1,8 @@
 const { Command } = require('discord-akairo')
 const { inspect } = require('util')
 
-class PingCommand extends Command {
-  constructor () {
+class evalCommand extends Command {
+  constructor() {
     super('eval', {
       aliases: ['eval'],
       args: [
@@ -21,7 +21,7 @@ class PingCommand extends Command {
     })
   }
 
-  async exec (message, { args }) {
+  async exec(message, { args }) {
     const client = this.client
     const code = args
     if (!code) return
@@ -60,7 +60,7 @@ class PingCommand extends Command {
       )
     }
 
-    function clean (text) {
+    function clean(text) {
       return text
         .replace(/`/g, '`' + String.fromCharCode(8203))
         .replace(/@/g, '@' + String.fromCharCode(8203))
@@ -68,4 +68,4 @@ class PingCommand extends Command {
   }
 }
 
-module.exports = PingCommand
+module.exports = evalCommand

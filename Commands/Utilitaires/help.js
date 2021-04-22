@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js')
 const { formatName } = require('../../Util/Functions')
 
 class HelpCommand extends Command {
-  constructor () {
+  constructor() {
     super('help', {
       aliases: ['help', 'h', 'halp', 'commands'],
       args: [{
@@ -19,14 +19,14 @@ class HelpCommand extends Command {
     })
   }
 
-  async exec (message, { command }) {
+  async exec(message, { command }) {
     if (!command) {
       const embed = new MessageEmbed()
       this.handler.categories.forEach((cm, category) => {
         const dirSize = cm.filter(cmd => cmd.category === cm)
         let mappedOut = cm.map(x => `\`${x}\``).join(', ')
         if (category === 'Owner' && (!this.client.ownerID.includes(message.author.id) ||
-                       category === 'Moderation') && !message.member.permissions.has('MANAGE_MESSAGES')
+          category === 'Moderation') && !message.member.permissions.has('MANAGE_MESSAGES')
         ) mappedOut = '`aucune commandes valabes..`'
 
         embed.addField(`${dirSize.size} | **Commands ${category}**`, mappedOut)

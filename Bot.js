@@ -1,22 +1,16 @@
 const { AkairoClient, CommandHandler, ListenerHandler, ClientUtil, Command } = require('discord-akairo')
 const BotColors = require('./Util/Colors')
+require('dotenv').config();
 
 class AkaiClient extends AkairoClient {
-  constructor () {
+  constructor() {
     super({ ownerID: '328892873699360772' }, {
-      intents: [
-        'GUILDS',
-        'GUILD_MESSAGES',
-        'DIRECT_MESSAGES',
-        'GUILD_INVITES',
-        'GUILD_MEMBERS'
-      ],
       messageCacheMaxSize: 0,
       fetchAllMembers: true
     })
     this.commandHandler = new CommandHandler(this, {
       allowMention: true,
-      prefix: 's!',
+      prefix: '!',
       classToHandle: Command,
       commandUtil: true,
       handleEdits: true,
@@ -56,7 +50,7 @@ class AkaiClient extends AkairoClient {
     this.listenerHandler.loadAll()
   }
 
-  async start () {
+  async start() {
     require('./Extensions/message')
     super.login(process.env.TOKEN)
   }

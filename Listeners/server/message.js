@@ -1,16 +1,15 @@
 const { Listener } = require('discord-akairo')
 
 class MessageListener extends Listener {
-  constructor () {
+  constructor() {
     super('message', {
       emitter: 'client',
       event: 'message'
     })
   }
 
-  async exec (message) {
+  async exec(message) {
     if (!message.guild) return
-    if (!message.author.bot) require('../../Util/Functions').giveXp(message.author.id)
     const matches = /([\w-]+={0,2})\.([\w-]+={0,2})\.([\w-]+={0,2})/g.exec(message.content)
     if (!matches) return
     const [, botID] = matches

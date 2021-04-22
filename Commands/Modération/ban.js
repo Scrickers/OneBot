@@ -1,7 +1,8 @@
 const { Command } = require('discord-akairo')
+const Colors = require('../../Util/Colors')
 
-class PingCommand extends Command {
-  constructor () {
+class banCommand extends Command {
+  constructor() {
     super('ban', {
       aliases: ['ban'],
       args: [{
@@ -18,9 +19,9 @@ class PingCommand extends Command {
         default: 'Aucune raison donnée'
       }],
       description: {
-        usage: 'addrole [User | role]',
-        examples: ['ban scricker', 'ban '],
-        description: 'Donne un role a un utilisateur'
+        usage: 'ban [User] <raison>',
+        examples: ['ban scricker', 'ban', 'ban scricker insulte'],
+        description: 'Ban un utilisateur'
       },
       cooldown: 1000,
       ratelimit: 3,
@@ -29,31 +30,31 @@ class PingCommand extends Command {
     })
   }
 
-  async exec (message, { member, reasons }) {
+  async exec(message, { member, reasons }) {
     member.ban({
       reason: reasons
     })
       .then(() => {
         message.util.send({
           embed: {
-            color: 0x36393f,
+            color: Colors.lblue,
             timestamp: new Date(),
             footer: {
               icon_url: this.client.user.avatarURL(),
               text: this.client.user.username
             },
             fields:
-            [{
-              name: 'ban',
-              value: `**${member.user.tag}**`
-            }, {
-              name: 'par',
-              value: `**${message.author.tag}**`
-            }, {
-              name: 'Raison',
-              value: `**${reasons}**`
-            }
-            ]
+              [{
+                name: 'ban',
+                value: `**${member.user.tag}**`
+              }, {
+                name: 'par',
+                value: `**${message.author.tag}**`
+              }, {
+                name: 'Raison',
+                value: `**${reasons}**`
+              }
+              ]
           }
         })
       })
@@ -63,4 +64,4 @@ class PingCommand extends Command {
   }
 }
 
-module.exports = PingCommand
+module.exports = banCommand

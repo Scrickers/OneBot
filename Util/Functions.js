@@ -1,5 +1,3 @@
-const Users = require('../models/Users')
-
 module.exports = {
 
   duration: function duration (ms) {
@@ -54,27 +52,5 @@ module.exports = {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min)) + min
-  },
-
-  giveXp: async function (userId) {
-    const user = await this.getPLayer(userId)
-    const xp = this.randomNumber(1, 8)
-    user.Exp += xp
-    user.ExpTotal += xp
-    if (Math.floor(40 * (user.Level * 1.25)) * user.Level <= user.Exp) {
-      user.Level++
-    }
-    user.save()
-  },
-
-  getPLayer: async function (userId) {
-    const user = await Users.findOne({
-      UserId: userId
-    })
-    if (!user) {
-      return (new Users({
-        UserId: userId
-      })).save()
-    } else return user
   }
 }

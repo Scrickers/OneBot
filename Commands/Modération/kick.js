@@ -1,7 +1,7 @@
 const { Command } = require('discord-akairo')
 
-class PingCommand extends Command {
-  constructor () {
+class kickCommand extends Command {
+  constructor() {
     super('kick', {
       aliases: ['kick'],
       args: [{
@@ -18,9 +18,9 @@ class PingCommand extends Command {
         default: 'Aucune raison donnée'
       }],
       description: {
-        usage: 'addrole [User | role]',
+        usage: 'kick [User] <raison> ',
         examples: ['kick scricker', 'kick scricker "Attaque raid" '],
-        description: 'Donne un role a un utilisateur'
+        description: 'kick un utilisateur'
       },
       cooldown: 1000,
       ratelimit: 3,
@@ -29,7 +29,7 @@ class PingCommand extends Command {
     })
   }
 
-  async exec (message, { member, reasons }) {
+  async exec(message, { member, reasons }) {
     member.kick({
       reason: reasons
     })
@@ -43,17 +43,17 @@ class PingCommand extends Command {
               text: this.client.user.username
             },
             fields:
-            [{
-              name: 'kick',
-              value: `**${member.user.tag}**`
-            }, {
-              name: 'par',
-              value: `**${message.author.tag}**`
-            }, {
-              name: 'Raison',
-              value: `**${reasons}**`
-            }
-            ]
+              [{
+                name: 'kick',
+                value: `**${member.user.tag}**`
+              }, {
+                name: 'par',
+                value: `**${message.author.tag}**`
+              }, {
+                name: 'Raison',
+                value: `**${reasons}**`
+              }
+              ]
           }
         })
       })
@@ -63,4 +63,4 @@ class PingCommand extends Command {
   }
 }
 
-module.exports = PingCommand
+module.exports = kickCommand
