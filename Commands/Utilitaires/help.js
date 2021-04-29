@@ -25,13 +25,12 @@ class HelpCommand extends Command {
       this.handler.categories.forEach((cm, category) => {
         const dirSize = cm.filter(cmd => cmd.category === cm)
         let mappedOut = cm.map(x => `\`${x}\``).join(', ')
-        if (category === 'Owner' && (!this.client.ownerID.includes(message.author.id) ||
-          category === 'Moderation') && !message.member.permissions.has('MANAGE_MESSAGES')
-        ) mappedOut = '`aucune commandes valabes..`'
+        if (!(category === 'Owner' && (!this.client.ownerID.includes(message.author.id)))) {
 
-        embed.addField(`${dirSize.size} | **Commands ${category}**`, mappedOut)
-          .setColor(this.client.colors.defaultColor)
-          .setAuthor(`Help Menu | ${message.guild.name}`, message.guild.iconURL())
+          embed.addField(`${dirSize.size} | **Commands ${category}**`, mappedOut)
+            .setColor(this.client.colors.defaultColor)
+            .setAuthor(`Help Menu | ${message.guild.name}`, message.guild.iconURL())
+        }
       })
 
       return message.util.send({ embed })
